@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon2.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+   <!-- Chatbot Styles -->
+  <style>
+    /* Chatbot Container */
+    .chatbot-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+      font-family: 'Open Sans', sans-serif;
+      transition: all 0.3s ease;
+    }
+    
+    /* Chatbot Button */
+    .chatbot-button {
+      background: #2e58ff;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(46, 88, 255, 0.4);
+      transition: all 0.3s ease;
+    }
+    
+    .chatbot-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(46, 88, 255, 0.5);
+    }
+    
+    .chatbot-button i {
+      font-size: 28px;
+    }
+    
+    /* Chatbot Window */
+    .chatbot-window {
+      width: 350px;
+      max-width: 90vw;
+      height: 450px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      display: none;
+      flex-direction: column;
+      transform: translateY(10px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .chatbot-window.active {
+      display: flex;
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    /* Chatbot Header */
+    .chatbot-header {
+      background: linear-gradient(135deg, #2e58ff, #6a11cb);
+      color: white;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .chatbot-header img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 12px;
+      background: white;
+      padding: 5px;
+    }
+    
+    .chatbot-header h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    
+    .chatbot-header p {
+      margin: 0;
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    
+    .chatbot-close {
+      margin-left: auto;
+      cursor: pointer;
+      font-size: 20px;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    
+    .chatbot-close:hover {
+      opacity: 1;
+    }
+    
+    /* Chatbot Messages */
+    .chatbot-messages {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      background: #f9fafb;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .message {
+      margin-bottom: 12px;
+      max-width: 80%;
+      animation: fadeIn 0.3s ease;
+      padding: 12px 16px;
+      border-radius: 18px;
+      line-height: 1.4;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .bot-message {
+      align-self: flex-start;
+      background: #eef2ff;
+      border-radius: 18px 18px 18px 4px;
+      color: #333;
+    }
+    
+    .user-message {
+      align-self: flex-end;
+      background: #2e58ff;
+      color: white;
+      border-radius: 18px 18px 4px 18px;
+      margin-left: auto;
+    }
+    
+    /* Chatbot Input */
+    .chatbot-input {
+      display: flex;
+      padding: 12px;
+      background: white;
+      border-top: 1px solid #eee;
+    }
+    
+    .chatbot-input input {
+      flex: 1;
+      border: 1px solid #ddd;
+      border-radius: 24px;
+      padding: 10px 16px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    
+    .chatbot-input input:focus {
+      border-color: #2e58ff;
+    }
+    
+    .chatbot-input button {
+      background: #2e58ff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      margin-left: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+    
+    .chatbot-input button:hover {
+      background: #1a45e0;
+    }
+    
+    /* Quick Reply Buttons */
+    .quick-replies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    
+    .quick-reply {
+      background: #eef2ff;
+      border: 1px solid #d0d7ff;
+      border-radius: 20px;
+      padding: 6px 12px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .quick-reply:hover {
+      background: #d0d7ff;
+    }
+    
+    /* Typing Indicator */
+    .typing-indicator {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+    }
+    
+    .typing-indicator span {
+      width: 8px;
+      height: 8px;
+      background: #999;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0 2px;
+      animation: typing 1s infinite;
+    }
+    
+    .typing-indicator span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    .typing-indicator span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    
+    @keyframes typing {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    
+    .suggested-questions {
+      margin-top: 10px;
+      padding: 10px;
+      background: #f0f4ff;
+      border-radius: 12px;
+      font-size: 14px;
+    }
+    
+    .suggested-questions p {
+      margin: 0 0 8px 0;
+      font-weight: 600;
+      color: #2e58ff;
+    }
+    
+    .suggested-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    
+    .suggested-item {
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    
+    .suggested-item:hover {
+      background: #dbe4ff;
+    }
+  </style>
+
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.webp" alt=""> -->
+        <img src="assets/img/Logo2.png" alt="Icono" style="width: 30px; height: 30px; margin-right: 10px;">
+        <h1 class="sitename">DevVision Solutions</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Inicio</a></li>
+          <li><a href="#about">Quiénes Somos</a></li>
+          <li><a href="#services">Servicios</a></li>
+          <li><a href="#portfolio">Portafolio</a></li>
+          </li>
+          <li><a href="#contact">Contacto</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="#about">Get Started</a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
+            <h1>Tu Visión, Nuestra Tecnología</h1>
+            <p>Juntos construimos el futuro: valor tangible y una experiencia de usuario excepcional</p>
+            <div class="d-flex">
+              <a href="#about" class="btn-get-started">Get Started</a>
+              <!-- <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+            </div>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="200">
+            <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- Clients Section -->
+    <!-- <section id="clients" class="clients section light-background">
+
+      <div class="container" data-aos="zoom-in">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 40
+                },
+                "480": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 60
+                },
+                "640": {
+                  "slidesPerView": 4,
+                  "spaceBetween": 80
+                },
+                "992": {
+                  "slidesPerView": 5,
+                  "spaceBetween": 120
+                },
+                "1200": {
+                  "slidesPerView": 6,
+                  "spaceBetween": 120
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><img src="assets/img/clients/clients-1.webp" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/clients-2.webp" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/clients-3.webp" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/clients-4.webp" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/clients-5.webp" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/clients-6.webp" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/clients-7.webp" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/clients/clients-8.webp" class="img-fluid" alt=""></div>
+          </div>
+        </div>
+
+      </div> -->
+
+    <!-- </section>/Clients Section -->
+
+
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Quiénes Somos</h2>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+            <p>
+              En DevVision Solutions, somos un equipo apasionado de desarrolladores, diseñadores y estrategas digitales 
+              especializados en crear aplicaciones web personalizadas para empresas que buscan transformar sus ideas
+              en soluciones tecnológicas robustas.
+            </p>
+            <ul>
+              <li><i class="bi bi-check2-circle"></i> <span>Cada solución se adapta a las necesidades únicas de tu negocio.</span></li>
+              <li><i class="bi bi-check2-circle"></i> <span>Usamos las últimas herramientas para garantizar rendimiento y seguridad.</span></li>
+              <li><i class="bi bi-check2-circle"></i> <span>No solo entregamos software, nos aseguramos de que funcione perfectamente.</span></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <p>Nuestgro enfoque es poder empoderar a las empresas con herramientas digitales escalables, seguras y fáciles de usar, diseñadas para optimizar procesos, mejorar la productividad y conectar mejor con sus clientes. </p>
+            <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Why Us Section -->
+    <section id="why-us" class="section why-us light-background" data-builder="section">
+
+      <div class="container-fluid">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-7 d-flex flex-column justify-content-center order-2 order-lg-1">
+
+            <div class="content px-xl-5" data-aos="fade-up" data-aos-delay="100">
+              <h3><span> ¿Por qué elegirnos? </span><strong>Compromiso, calidad y resultados</strong></h3>
+              <p>
+                Nos enfocamos en ofrecer soluciones digitales efectivas, adaptadas a tus necesidades, con un enfoque centrado en el usuario y resultados medibles.
+              </p>
+            </div>
+
+            <div class="faq-container px-xl-5" data-aos="fade-up" data-aos-delay="200">
+
+              <div class="faq-item faq-active">
+
+                <h3><span>01</span> ¿Qué tipo de servicios se ofrecen?</h3>
+                <div class="faq-content">
+                  <p>Ofrecemos desarrollo web, administración y mantenimiento, diseño personalizado, integración de herramientas y soporte técnico continuo</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3><span>02</span> ¿Cómo se garantiza la calidad del servicio?</h3>
+                <div class="faq-content">
+                  <p>Aplicamos buenas prácticas de desarrollo, pruebas constantes y comunicación directa con el cliente para asegurar resultados de alta calidad.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3><span>03</span> ¿Ofrecen soporte después de entregar el proyecto?</h3>
+                <div class="faq-content">
+                  <p>Sí, brindamos soporte y mantenimiento post-lanzamiento para asegurar el correcto funcionamiento y evolución de tu sitio web.</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-5 order-1 order-lg-2 why-us-img">
+            <img src="assets/img/why-us.png" class="img-fluid" alt="" data-aos="zoom-in" data-aos-delay="100">
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Why Us Section -->
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row">
+
+          <div class="col-lg-6 d-flex align-items-center">
+            <img src="assets/img/illustration/illustration-10.webp" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-6 pt-4 pt-lg-0 content">
+
+            <h3>Habilidades Técnicas y Creativas</h3>
+            <p class="fst-italic">
+              Contamos con un conjunto sólido de habilidades para desarrollar soluciones digitales efectivas y visualmente atractivas.
+            </p>
+
+            <div class="skills-content skills-animation">
+
+              <div class="progress">
+                <span class="skill"><span>HTML</span> <i class="val">100%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div><!-- End Skills Item -->
+
+              <div class="progress">
+                <span class="skill"><span>CSS</span> <i class="val">100%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div><!-- End Skills Item -->
+
+              <div class="progress">
+                <span class="skill"><span>JavaScript</span> <i class="val">100%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div><!-- End Skills Item -->
+
+              <div class="progress">
+                <span class="skill"><span>APIs</span> <i class="val">100%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div><!-- End Skills Item -->
+
+               <div class="progress">
+                <span class="skill"><span>SQL</span> <i class="val">100%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div><!-- End Skills Item -->
+
+               <div class="progress">
+                <span class="skill"><span>Clean Architecture</span> <i class="val">100%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div><!-- End Skills Item -->
+
+               <div class="progress">
+                <span class="skill"><span>Reportes PBI</span> <i class="val">100%</i></span>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div><!-- End Skills Item -->
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Skills Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Servicios</h2>
+        <p>Desarrollo y administración de páginas web con soporte y mantenimiento continuo</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item position-relative">
+              <div class="icon"><i class="bi bi-terminal"></i></div>
+              <h4><a href="" class="stretched-link">Desarrollo web</a></h4>
+              <p>Aplicaciones empresariales con ASP.NET Core, Blazor y WPF conMicroservicios y arquitecturas limpias (Clean Architecture, DDD)</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item position-relative">
+              <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
+              <h4><a href="" class="stretched-link">APIs</a></h4>
+              <p>RESTful APIs con ASP.NET Core Web API, GraphQL para consultas flexibles</p>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item position-relative">
+              <div class="icon"><i class="bi bi-phone-flip"></i></div>
+              <h4><a href="" class="stretched-link">Aplicaciones móviles</a></h4>
+              <p>(iOS & Android) con Flutter y React Native.</p>
+            </div>
+          </div><!-- End Service Item -->          
+
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item position-relative">
+              <div class="icon"><i class="bi bi-gear-wide-connected"></i></div>
+              <h4><a href="" class="stretched-link">Mantenimiento y soporte técnico</a></h4>
+              <p>Parches y actualizaciones de seguridad (.NET Core, SQL Server), Backups automatizados y planes de recuperación ante desastres. </p>
+            </div>
+          </div><!-- End Service Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Services Section -->
+
+    <!-- Work Process Section -->
+    <section id="work-process" class="work-process section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Proceso de Trabajo</h2>
+        <p>Transformamos ideas en soluciones digitales efectivas a través de un proceso claro y colaborativo</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-5">
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="steps-item">
+              <div class="steps-image">
+                <img src="assets/img/steps/steps-1.webp" alt="Step 1" class="img-fluid" loading="lazy">
+              </div>
+              <div class="steps-content">
+                <div class="steps-number">01</div>
+                <h3>Investigación &amp; Análisis</h3>
+                <p>Estudiamos tu mercado, analizamos datos y escuchamos a los usuarios para definir una estrategia sólida.</p>
+                <div class="steps-features">
+                  <div class="feature-item">
+                    <i class="bi bi-check-circle"></i>
+                    <span>Estudio De Mercado</span>
+                  </div>
+                  <div class="feature-item">
+                    <i class="bi bi-check-circle"></i>
+                    <span>Análisis De Datos</span>
+                  </div>
+                  <div class="feature-item">
+                    <i class="bi bi-check-circle"></i>
+                    <span>Feedback De Usuarios</span>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Steps Item -->
+          </div>
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="steps-item">
+              <div class="steps-image">
+                <img src="assets/img/steps/steps-2.webp" alt="Step 2" class="img-fluid" loading="lazy">
+              </div>
+              <div class="steps-content">
+                <div class="steps-number">02</div>
+                <h3>Diseño &amp; Planificación</h3>
+                <p>Diseñamos interfaces intuitivas y planificamos cada etapa del proyecto para asegurar una ejecución eficiente.</p>
+                <div class="steps-features">
+                  <div class="feature-item">
+                    <i class="bi bi-check-circle"></i>
+                    <span>Wireframes</span>
+                  </div>
+                  <div class="feature-item">
+                    <i class="bi bi-check-circle"></i>
+                    <span>Diseño UI/UX</span>
+                  </div>
+                  <div class="feature-item">
+                    <i class="bi bi-check-circle"></i>
+                    <span>Prototipos</span>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Steps Item -->
+          </div>
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="steps-item">
+              <div class="steps-image">
+                <img src="assets/img/steps/steps-3.webp" alt="Step 3" class="img-fluid" loading="lazy">
+              </div>
+              <div class="steps-content">
+                <div class="steps-number">03</div>
+                <h3>Desarrollo &amp; Lanzamiento</h3>
+                <p>Construimos, probamos y lanzamos tu solución digital, asegurando calidad y funcionalidad desde el primer día.</p>
+                <div class="steps-features">
+                  <div class="feature-item">
+                    <i class="bi bi-check-circle"></i>
+                    <span>Desarrollo</span>
+                  </div>
+                  <div class="feature-item">
+                    <i class="bi bi-check-circle"></i>
+                    <span>Pruebas</span>
+                  </div>
+                  <div class="feature-item">
+                    <i class="bi bi-check-circle"></i>
+                    <span>Implementación</span>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Steps Item -->
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Work Process Section -->
+
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Portafolio</h2>
+        <p>Algunos de los proyectos que hemos desarrollado recientemente</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+          <!-- <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=".filter-app">App</li>
+            <li data-filter=".filter-product">Card</li>
+            <li data-filter=".filter-branding">Web</li>
+          </ul>End Portfolio Filters -->
+
+
+
+        <!-- Primer Contenedor -->
+        <div class="row gy-4 justify-content-center text-center isotope-container w-100" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+            <img src="assets/img/portfolio/ControlActivos.png" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Control Activos</h4>
+              <p>Plataforma para gestionar y rastrear activos empresariales.</p>
+              <a href="assets/img/portfolio/ControlActivos.png" title="ControlActivos" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+            <img src="assets/img/portfolio/Gym.png" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Sistema de Control de Accesos</h4>
+              <p>Aplicación para gestionar entradas y salidas de usuarios en un gimnasio</p>
+              <a href="assets/img/portfolio/Gym.png" title="ControlAcceso" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+            <img src="assets/img/portfolio/Colegio.png" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Sistema de Matrículas</h4>
+              <p>Plataforma para gestionar inscripciones y datos académicos de estudiantes</p>
+              <a href="assets/img/portfolio/Colegio.png" title="Matriculas" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="my-4"></div>
+
+        <!-- Segundo Contenedor -->
+       
+        <div class="row gy-4 justify-content-center text-center isotope-container w-100" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+            <img src="assets/img/portfolio/LandPage.png" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Landing Page</h4>
+              <p>Página de aterrizaje diseñada para captar clientes y presentar servicios</p>
+              <a href="assets/img/portfolio/LandPage.png" title="Informativo" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+     <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contacto</h2>
+        <p>¿Tienes un proyecto en mente o necesitas más información? ¡Estamos aquí para ayudarte!</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-5">
+
+            <div class="info-wrap">
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <div>
+                  <h3>Dirección</h3>
+                  <p>Bogotá Colombia</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                <i class="bi bi-telephone flex-shrink-0"></i>
+                <div>
+                  <h3>Telefono</h3>
+                  <p>+57 3123523304</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h3>Email</h3>
+                  <p>admcolombia57@gmail.com</p> 
+                </div>
+              </div><!-- End Info Item -->
+
+
+          <iframe 
+           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.735123456789!2d-74.072092!3d4.710989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99a3b1c1a1a1%3A0x1234567890abcdef!2sBogotá%2C%20Colombia!5e0!3m2!1ses!2sco!4v1717430000000!5m2!1ses!2sco" 
+           width="100%" 
+           height="270" 
+           style="border:0;" 
+           allowfullscreen="" 
+           loading="lazy" 
+           referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+            </div>
+          </div>
+
+         <div class="col-lg-7">
+                <form action="https://formspree.io/f/mzzgbnvp?redirect=false" method="POST" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+                  
+                    <div class="row gy-4">
+                        <div class="col-md-6">
+                            <label for="name-field" class="pb-2">Nombre</label>
+                            <input type="text" name="name" id="name-field" class="form-control" required="">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email-field" class="pb-2">Email</label>
+                            <input type="email" class="form-control" name="email" id="email-field" required="">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="subject-field" class="pb-2">Asunto</label>
+                            <input type="text" class="form-control" name="subject" id="subject-field" required="">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="message-field" class="pb-2">Mensaje</label>
+                            <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <div class="loading">Loading</div>
+                             <div class="error-message" style="display: none;"></div>
+                            <div class="sent-message" style="display: none;">¡Tu mensaje ha sido enviado con éxito!</div>
+                            <button type="submit">Enviar Mensaje</button>
+                        </div>
+                    </div>
+                </form>
+           </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+  <footer id="footer" class="footer">    
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="d-flex align-items-center">
+             <img src="assets/img/Logo2.png" alt="Icono" style="width: 30px; height: 30px; margin-right: 10px;">
+            <span class="sitename">DevVision Solutions</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Bogotá</p>
+            <p>Colombia</p>
+            <p class="mt-3"><strong>Telefono:</strong> <span>+57 3123523304</span></p>
+            <p><strong>Email:</strong> <span>admcolombia57@gmail.com</span></p>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Enlaces útiles</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="#hero" class="active">Inicio</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#about">Quiénes Somos</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#services">Servicios</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#portfolio">Portafolio</a></li>
+          </ul>
+        </div>   
+
+        <div class="col-lg-4 col-md-12">
+          <h4>Síguenos</h4>
+          <p>Conéctate con nosotros en redes sociales para conocer más sobre nuestros proyectos y novedades</p>
+          <div class="social-links d-flex">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">DevVision Solutions</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by Ing. Cristian Hernandez</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+
+    <!-- Chatbot Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Chatbot elements
+      const chatbotButton = document.getElementById('chatbotButton');
+      const chatbotWindow = document.getElementById('chatbotWindow');
+      const chatbotClose = document.getElementById('chatbotClose');
+      const chatMessages = document.getElementById('chatMessages');
+      const userInput = document.getElementById('userInput');
+      const sendMessage = document.getElementById('sendMessage');
+      
+      // Toggle chatbot window
+      chatbotButton.addEventListener('click', function() {
+        chatbotWindow.classList.toggle('active');
+      });
+      
+      chatbotClose.addEventListener('click', function() {
+        chatbotWindow.classList.remove('active');
+      });
+      
+      // Send message function
+      function sendUserMessage() {
+        const message = userInput.value.trim();
+        if (message) {
+          // Add user message to chat
+          addMessage(message, 'user');
+          userInput.value = '';
+          
+          // Show typing indicator
+          showTypingIndicator();
+          
+          // Process and respond after a short delay
+          setTimeout(() => {
+            const response = getBotResponse(message);
+            addMessage(response, 'bot');
+          }, 1000);
+        }
+      }
+      
+      // Send message on button click
+      sendMessage.addEventListener('click', sendUserMessage);
+      
+      // Send message on Enter key
+      userInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          sendUserMessage();
+        }
+      });
+      
+      // Suggested questions
+      document.querySelectorAll('.suggested-item').forEach(item => {
+        item.addEventListener('click', function() {
+          const question = this.getAttribute('data-question');
+          userInput.value = question;
+          sendUserMessage();
+        });
+      });
+      
+      // Add message to chat
+      function addMessage(text, sender) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message');
+        messageElement.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+        messageElement.textContent = text;
+        chatMessages.appendChild(messageElement);
+        
+        // Scroll to bottom
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        // Remove typing indicator if present
+        const typingIndicator = document.querySelector('.typing-indicator');
+        if (typingIndicator) typingIndicator.remove();
+      }
+      
+      // Show typing indicator
+      function showTypingIndicator() {
+        const typingElement = document.createElement('div');
+        typingElement.classList.add('message', 'bot-message', 'typing-indicator');
+        typingElement.innerHTML = '<span></span><span></span><span></span>';
+        chatMessages.appendChild(typingElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+      
+      // Get bot response based on user input
+      function getBotResponse(message) {
+        const lowerMessage = message.toLowerCase();
+        
+        // Desarrollo web
+        if (lowerMessage.includes('web') || lowerMessage.includes('página') || lowerMessage.includes('sitio')) {
+          return "Desarrollamos aplicaciones web empresariales utilizando tecnologías modernas como ASP.NET Core y Blazor. Creamos soluciones escalables con arquitecturas limpias (Clean Architecture, DDD) y microservicios para garantizar alto rendimiento y seguridad.";
+        }
+        
+        // Aplicaciones móviles
+        if (lowerMessage.includes('móvil') || lowerMessage.includes('app') || lowerMessage.includes('celular')) {
+          return "Sí, desarrollamos aplicaciones móviles para iOS y Android usando frameworks como Flutter y React Native. Creamos apps nativas e híbridas con excelente rendimiento y experiencia de usuario.";
+        }
+        
+        // APIs
+        if (lowerMessage.includes('api') || lowerMessage.includes('rest') || lowerMessage.includes('graphql')) {
+          return "Desarrollamos APIs RESTful con ASP.NET Core Web API y también implementamos GraphQL para consultas más flexibles. Nuestras APIs incluyen autenticación segura, documentación completa y versionamiento.";
+        }
+        
+        // Power BI
+        if (lowerMessage.includes('power bi') || lowerMessage.includes('bi') || lowerMessage.includes('reporte')) {
+          return "Creamos reportes avanzados en Power BI que transforman tus datos en insights accionables. Integramos con diversas fuentes de datos, creamos dashboards interactivos y ofrecemos soluciones de BI completas para toma de decisiones.";
+        }
+        
+        // SQL
+        if (lowerMessage.includes('sql') || lowerMessage.includes('base') || lowerMessage.includes('datos')) {
+          return "Trabajamos con bases de datos SQL Server, optimizando consultas, diseñando esquemas eficientes y garantizando la integridad de tus datos. También ofrecemos servicios de mantenimiento, backups y optimización de bases de datos.";
+        }
+
+        if (lowerMessage.includes('hola') || lowerMessage.includes('buenas') || lowerMessage.includes('saludos')) {
+          return "¡Hola! Soy el asistente de DevVision. ¿En qué puedo ayudarte hoy? Puedes preguntarme sobre:\n- Desarrollo de software\n- Aplicaciones web y móviles\n- Bases de datos\n- Nuestros procesos de trabajo";
+        }
+
+        // Despedidas
+        if (lowerMessage.includes('adiós') || lowerMessage.includes('chao') || lowerMessage.includes('gracias')) {
+          return "¡Fue un placer ayudarte! Si tienes más preguntas, estoy aquí para lo que necesites. Que tengas un excelente día.";
+        }
+
+        // Sobre la empresa
+        if (lowerMessage.includes('empresa') || lowerMessage.includes('quiénes son') || lowerMessage.includes('devvision')) {
+          return "DevVision Solutions es una empresa especializada en desarrollo de software a medida. Creamos soluciones tecnológicas robustas usando las mejores prácticas y tecnologías modernas como .NET, Flutter y SQL Server.";
+        }
+
+        // Tecnologías de desarrollo
+        if (lowerMessage.includes('tecnologías') || lowerMessage.includes('lenguajes') || lowerMessage.includes('usas') || lowerMessage.includes('utilizan')) {
+          return "Trabajamos principalmente con:\n\n🔹 .NET C# para aplicaciones empresariales\n🔹 Flutter y Dart para apps móviles multiplataforma\n🔹 SQL Server para bases de datos relacionales\n🔹 Power BI para análisis y visualización de datos\n\n¿Te gustaría conocer más detalles sobre alguna en particular?";
+        }
+
+        // Desarrollo web
+        if (lowerMessage.includes('web') || lowerMessage.includes('página') || lowerMessage.includes('sitio') || lowerMessage.includes('aplicación web')) {
+          return "Nuestros desarrollos web incluyen:\n\n• Sistemas empresariales con ASP.NET Core\n• Arquitecturas limpias y escalables\n• Microservicios para alta disponibilidad\n• Interfaces modernas con Blazor\n• Integración con APIs y bases de datos\n\n¿Necesitas un sistema web específico para tu negocio?";
+        }
+
+        // Aplicaciones móviles
+        if (lowerMessage.includes('móvil') || lowerMessage.includes('app') || lowerMessage.includes('celular') || lowerMessage.includes('flutter') || lowerMessage.includes('dart')) {
+          return "Desarrollamos apps móviles con Flutter que funcionan en:\n\n📱 iOS (iPhone/iPad)\n📱 Android\n\nBeneficios:\n✔ Código único para ambas plataformas\n✔ Alto rendimiento\n✔ Diseño atractivo y personalizable\n✔ Fácil mantenimiento\n\n¿Tienes un proyecto móvil en mente?";
+        }
+
+        // Bases de datos
+        if (lowerMessage.includes('sql') || lowerMessage.includes('base') || lowerMessage.includes('datos') || lowerMessage.includes('almacenamiento')) {
+          return "Nuestro expertise en bases de datos incluye:\n\n🔷 SQL Server para datos estructurados\n🔷 Diseño de esquemas optimizados\n🔷 Consultas complejas y procedimientos almacenados\n🔷 Migración y optimización de bases existentes\n🔷 Backup y seguridad de datos\n\n¿Necesitas ayuda con la gestión de tus datos?";
+        }
+
+        // Arquitectura de software
+        if (lowerMessage.includes('arquitectura') || lowerMessage.includes('clean') || lowerMessage.includes('diseño') || lowerMessage.includes('estructura')) {
+          return "Aplicamos Clean Architecture para crear sistemas:\n\n⚡ Modulares y fáciles de mantener\n⚡ Independientes de frameworks\n⚡ Con reglas de negocio claramente definidas\n⚡ Fáciles de probar y escalar\n\nEsto garantiza software de calidad que evoluciona con tu negocio.";
+        }
+
+        // Tiempos de desarrollo
+        if (lowerMessage.includes('tiempo') || lowerMessage.includes('cuánto demora') || lowerMessage.includes('días') || lowerMessage.includes('semanas')) {
+          return "El tiempo de desarrollo varía según:\n\n⏳ Complejidad del proyecto\n⏳ Funcionalidades requeridas\n⏳ Integraciones necesarias\n\nPor ejemplo:\n• Landing page: 1-2 semanas\n• App móvil básica: 3-6 semanas\n• Sistema empresarial: 2-6 meses\n\n¿Quieres que evaluemos tu proyecto específico?";
+        }
+
+        // Costos
+        if (lowerMessage.includes('precio') || lowerMessage.includes('costo') || lowerMessage.includes('cuánto cuesta') || lowerMessage.includes('presupuesto')) {
+          return "Los costos dependen de:\n\n💰 Alcance del proyecto\n💰 Tecnologías requeridas\n💰 Tiempo de desarrollo\n\nOfrecemos:\n• Presupuestos personalizados\n• Opciones escalables\n• Transparencia en costos\n\n¿Te gustaría agendar una reunión para discutir tu proyecto?";
+        }
+
+        // Soporte post-lanzamiento
+        if (lowerMessage.includes('soporte') || lowerMessage.includes('mantenimiento') || lowerMessage.includes('actualizaciones') || lowerMessage.includes('post-lanzamiento')) {
+          return "Nuestro soporte incluye:\n\n🔧 Mantenimiento preventivo\n🔧 Actualizaciones de seguridad\n🔧 Corrección de bugs\n🔧 Mejoras continuas\n🔧 Capacitación a tu equipo\n\nOfrecemos planes mensuales adaptados a tus necesidades.";
+        }
+
+        // Proceso de trabajo
+        if (lowerMessage.includes('proceso') || lowerMessage.includes('metodología') || lowerMessage.includes('cómo trabajan') || lowerMessage.includes('flujo')) {
+          return "Nuestro proceso:\n\n1️⃣ Análisis de requerimientos\n2️⃣ Diseño de solución\n3️⃣ Desarrollo iterativo\n4️⃣ Pruebas rigurosas\n5️⃣ Lanzamiento controlado\n6️⃣ Soporte continuo\n\nTrabajamos con metodologías ágiles para máxima flexibilidad.";
+        }
+
+        // Integraciones
+        if (lowerMessage.includes('integrar') || lowerMessage.includes('conectar') || lowerMessage.includes('api') || lowerMessage.includes('sistemas')) {
+          return "Podemos integrar tu solución con:\n\n🔌 APIs de terceros (pagos, mapas, etc.)\n🔌 Sistemas legacy\n🔌 Servicios en la nube\n🔌 Bases de datos existentes\n🔌 Aplicaciones móviles\n\n¿Qué sistemas necesitas conectar?";
+        }
+
+        // Seguridad
+        if (lowerMessage.includes('seguridad') || lowerMessage.includes('protección') || lowerMessage.includes('vulnerabilidades') || lowerMessage.includes('hackers')) {
+          return "Implementamos múltiples medidas de seguridad:\n\n🔐 Autenticación robusta\n🔐 Encriptación de datos\n🔐 Protección contra inyecciones SQL\n🔐 Actualizaciones de seguridad\n🔐 Pruebas de penetración\n\nLa seguridad es prioridad en todos nuestros desarrollos.";
+        }
+
+        // Mobile vs Web
+        if (lowerMessage.includes('móvil vs web') || lowerMessage.includes('diferencias') || lowerMessage.includes('cuál elegir') || lowerMessage.includes('comparación')) {
+          return "Diferencias clave:\n\n📱 **App Móvil**:\n- Mejor experiencia en dispositivos\n- Funcionalidad offline\n- Acceso a hardware del dispositivo\n\n🌐 **Web**:\n- Acceso desde cualquier navegador\n- Sin necesidad de descargas\n- Más fácil de actualizar\n\n¿Necesitas ayuda para decidir?";
+        }
+        
+        // Default response
+        return "Entiendo que preguntas sobre: " + message + ". En DevVision Solutions nos especializamos en desarrollo web, aplicaciones móviles, APIs, reportes en Power BI y bases de datos SQL. ¿Puedes reformular tu pregunta o ser más específico?";
+      }
+    });
+  </script>
+
+  <!-- Chatbot Container -->
+  <div class="chatbot-container">
+    <div class="chatbot-button" id="chatbotButton">
+      <i class="bi bi-chat-dots"></i>
+    </div>
+    
+    <div class="chatbot-window" id="chatbotWindow">
+      <div class="chatbot-header">
+        <img src="assets/img/Logo2.png" alt="DevVision Chatbot">
+        <div>
+          <h3>Asistente DevVision</h3>
+          <p>Estoy aquí para ayudarte</p>
+        </div>
+        <div class="chatbot-close" id="chatbotClose">
+          <i class="bi bi-x-lg"></i>
+        </div>
+      </div>
+      
+      <div class="chatbot-messages" id="chatMessages">
+        <div class="message bot-message">
+          ¡Hola! 👋 Soy el asistente virtual de DevVision Solutions. ¿En qué puedo ayudarte hoy? Puedes preguntarme sobre:
+          <div class="suggested-questions">
+            <p>Preguntas frecuentes:</p>
+            <div class="suggested-list">
+              <div class="suggested-item" data-question="¿Qué tecnologías usan para desarrollo web?">- Desarrollo web (ASP.NET, Blazor)</div>
+              <div class="suggested-item" data-question="¿Desarrollan aplicaciones móviles?">- Aplicaciones móviles</div>
+              <div class="suggested-item" data-question="¿Qué tipo de APIs desarrollan?">- Desarrollo de APIs</div>
+              <div class="suggested-item" data-question="¿Ofrecen reportes en Power BI?">- Reportes en Power BI</div>
+              <div class="suggested-item" data-question="¿Trabajan con bases de datos SQL?">- Bases de datos SQL</div>
+              <div class="suggested-item" data-question="¿Qué tecnologías usan?">- Tecnologías que utilizamos</div>
+              <div class="suggested-item" data-question="¿Cuánto cuesta desarrollar una app?">- Costos de desarrollo</div>
+              <div class="suggested-item" data-question="¿Qué es Clean Architecture?">- Sobre nuestra arquitectura</div>
+              <div class="suggested-item" data-question="¿Hacen aplicaciones para iOS y Android?">- Desarrollo móvil</div>
+              <div class="suggested-item" data-question="¿Dan soporte después del lanzamiento?">- Soporte y mantenimiento</div>
+              <div class="suggested-item" data-question="¿Cómo es su proceso de trabajo?">- Nuestra metodología</div>
+              <div class="suggested-item" data-question="¿Qué ventajas tiene .NET?">- Ventajas de .NET C#</div>
+              <div class="suggested-item" data-question="¿Por qué usar Flutter?">- Beneficios de Flutter</div>  
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="chatbot-input">
+        <input type="text" id="userInput" placeholder="Escribe tu pregunta...">
+        <button id="sendMessage">
+          <i class="bi bi-send"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('.php-email-form');
+    const loading = form.querySelector('.loading');
+    const errorMessage = form.querySelector('.error-message');
+    const sentMessage = form.querySelector('.sent-message');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      // Ocultar mensajes previos
+      loading.style.display = 'block';
+      errorMessage.style.display = 'none';
+      sentMessage.style.display = 'none';
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.ok) {
+          // Éxito
+          loading.style.display = 'none';
+          sentMessage.style.display = 'block';
+          form.reset();
+        } else {
+          // Error en la respuesta
+          loading.style.display = 'none';
+          errorMessage.textContent = result.error || 'Hubo un error al enviar el mensaje.';
+          errorMessage.style.display = 'block';
+        }
+      } catch (error) {
+        // Error de red o excepción
+        loading.style.display = 'none';
+        errorMessage.textContent = 'Hubo un error al conectar con el servidor.';
+        errorMessage.style.display = 'block';
+      }
+    });
+  });
+</script>
