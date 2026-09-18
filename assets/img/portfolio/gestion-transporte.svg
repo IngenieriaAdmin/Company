@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Gestión de Transporte">
+  <rect width="800" height="500" fill="#f5f7fa"/>
+  <rect width="800" height="50" fill="#37517e"/>
+  <circle cx="26" cy="25" r="6" fill="#ff5f57"/>
+  <circle cx="46" cy="25" r="6" fill="#febc2e"/>
+  <circle cx="66" cy="25" r="6" fill="#28c840"/>
+  <text x="400" y="30" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="15" font-weight="600" fill="#ffffff">Gestión de Transporte &#8212; Flota</text>
+
+  <rect x="0" y="50" width="70" height="450" fill="#2c3e58"/>
+  <rect x="24" y="80" width="22" height="22" rx="6" fill="#57647f"/>
+  <rect x="24" y="120" width="22" height="22" rx="6" fill="#47b2e4"/>
+  <rect x="24" y="160" width="22" height="22" rx="6" fill="#57647f"/>
+  <rect x="24" y="200" width="22" height="22" rx="6" fill="#57647f"/>
+
+  <!-- Stat cards -->
+  <rect x="94" y="78" width="200" height="72" rx="10" fill="#ffffff" stroke="#e3e8ee"/>
+  <text x="112" y="104" font-family="'Open Sans', sans-serif" font-size="12" fill="#8a94a6">Vehículos en ruta</text>
+  <text x="112" y="132" font-family="'Poppins', sans-serif" font-size="24" font-weight="700" fill="#37517e">21</text>
+
+  <rect x="308" y="78" width="200" height="72" rx="10" fill="#ffffff" stroke="#e3e8ee"/>
+  <text x="326" y="104" font-family="'Open Sans', sans-serif" font-size="12" fill="#8a94a6">Remisiones hoy</text>
+  <text x="326" y="132" font-family="'Poppins', sans-serif" font-size="24" font-weight="700" fill="#47b2e4">57</text>
+
+  <rect x="522" y="78" width="200" height="72" rx="10" fill="#ffffff" stroke="#e3e8ee"/>
+  <text x="540" y="104" font-family="'Open Sans', sans-serif" font-size="12" fill="#8a94a6">Mantenimientos</text>
+  <text x="540" y="132" font-family="'Poppins', sans-serif" font-size="24" font-weight="700" fill="#37517e">4</text>
+
+  <!-- Route chart -->
+  <rect x="94" y="166" width="628" height="140" rx="10" fill="#ffffff" stroke="#e3e8ee"/>
+  <text x="114" y="192" font-family="'Open Sans', sans-serif" font-size="13" font-weight="600" fill="#37517e">Seguimiento GPS en tiempo real</text>
+  <polyline points="120,278 200,250 260,266 330,220 400,240 470,200 540,232 610,196 690,214" fill="none" stroke="#47b2e4" stroke-width="3"/>
+  <circle cx="690" cy="214" r="5" fill="#37517e"/>
+
+  <!-- Vehicle table -->
+  <rect x="94" y="318" width="628" height="118" rx="10" fill="#ffffff" stroke="#e3e8ee"/>
+  <text x="114" y="344" font-family="'Open Sans', sans-serif" font-size="13" font-weight="600" fill="#37517e">Estado de la flota</text>
+  <g font-family="'Open Sans', sans-serif">
+    <circle cx="128" cy="372" r="6" fill="#28c840"/>
+    <rect x="146" y="366" width="260" height="8" rx="4" fill="#37517e"/>
+    <rect x="600" y="364" width="100" height="14" rx="7" fill="#e3f7ea"/>
+
+    <circle cx="128" cy="400" r="6" fill="#febc2e"/>
+    <rect x="146" y="394" width="220" height="8" rx="4" fill="#37517e"/>
+    <rect x="600" y="392" width="100" height="14" rx="7" fill="#fff6e0"/>
+
+    <circle cx="128" cy="424" r="6" fill="#28c840"/>
+    <rect x="146" y="418" width="240" height="8" rx="4" fill="#37517e"/>
+    <rect x="600" y="416" width="100" height="14" rx="7" fill="#e3f7ea"/>
+  </g>
+</svg>

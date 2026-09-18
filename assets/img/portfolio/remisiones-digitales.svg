@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Remisiones Digitales">
+  <rect width="800" height="500" fill="#f5f7fa"/>
+  <rect width="800" height="50" fill="#37517e"/>
+  <circle cx="26" cy="25" r="6" fill="#ff5f57"/>
+  <circle cx="46" cy="25" r="6" fill="#febc2e"/>
+  <circle cx="66" cy="25" r="6" fill="#28c840"/>
+  <text x="400" y="30" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="15" font-weight="600" fill="#ffffff">Remisiones Digitales</text>
+
+  <rect x="0" y="50" width="70" height="450" fill="#2c3e58"/>
+  <rect x="24" y="80" width="22" height="22" rx="6" fill="#57647f"/>
+  <rect x="24" y="120" width="22" height="22" rx="6" fill="#47b2e4"/>
+  <rect x="24" y="160" width="22" height="22" rx="6" fill="#57647f"/>
+
+  <rect x="94" y="78" width="628" height="90" rx="10" fill="#ffffff" stroke="#e3e8ee"/>
+  <text x="114" y="106" font-family="'Open Sans', sans-serif" font-size="12" fill="#8a94a6">Facturación del mes</text>
+  <text x="114" y="140" font-family="'Poppins', sans-serif" font-size="26" font-weight="700" fill="#37517e">$48.2M COP</text>
+  <rect x="620" y="100" width="80" height="46" rx="6" fill="#eef2f7"/>
+  <rect x="628" y="108" width="8" height="8" fill="#37517e"/><rect x="640" y="108" width="8" height="8" fill="#37517e"/><rect x="652" y="108" width="8" height="8" fill="#37517e"/>
+  <rect x="628" y="120" width="8" height="8" fill="#37517e"/><rect x="652" y="120" width="8" height="8" fill="#37517e"/>
+  <rect x="628" y="132" width="8" height="8" fill="#37517e"/><rect x="640" y="132" width="8" height="8" fill="#37517e"/><rect x="652" y="132" width="8" height="8" fill="#37517e"/>
+
+  <rect x="94" y="186" width="628" height="250" rx="10" fill="#ffffff" stroke="#e3e8ee"/>
+  <text x="114" y="214" font-family="'Open Sans', sans-serif" font-size="13" font-weight="600" fill="#37517e">Órdenes y remisiones</text>
+
+  <g font-family="'Open Sans', sans-serif">
+    <rect x="114" y="234" width="26" height="30" rx="4" fill="#dbe9f5"/>
+    <rect x="152" y="238" width="260" height="8" rx="4" fill="#37517e"/>
+    <rect x="152" y="252" width="140" height="6" rx="3" fill="#c3cbd6"/>
+    <rect x="640" y="238" width="62" height="18" rx="9" fill="#e3f7ea"/>
+    <text x="671" y="251" text-anchor="middle" font-size="10" fill="#1f9d55">Pagada</text>
+
+    <rect x="114" y="282" width="26" height="30" rx="4" fill="#dbe9f5"/>
+    <rect x="152" y="286" width="220" height="8" rx="4" fill="#37517e"/>
+    <rect x="152" y="300" width="160" height="6" rx="3" fill="#c3cbd6"/>
+    <rect x="640" y="286" width="62" height="18" rx="9" fill="#fdecea"/>
+    <text x="671" y="299" text-anchor="middle" font-size="10" fill="#c0392b">Pendiente</text>
+
+    <rect x="114" y="330" width="26" height="30" rx="4" fill="#dbe9f5"/>
+    <rect x="152" y="334" width="240" height="8" rx="4" fill="#37517e"/>
+    <rect x="152" y="348" width="130" height="6" rx="3" fill="#c3cbd6"/>
+    <rect x="640" y="334" width="62" height="18" rx="9" fill="#e3f7ea"/>
+    <text x="671" y="347" text-anchor="middle" font-size="10" fill="#1f9d55">Pagada</text>
+
+    <rect x="114" y="378" width="26" height="30" rx="4" fill="#dbe9f5"/>
+    <rect x="152" y="382" width="200" height="8" rx="4" fill="#37517e"/>
+    <rect x="152" y="396" width="150" height="6" rx="3" fill="#c3cbd6"/>
+    <rect x="640" y="382" width="62" height="18" rx="9" fill="#eef2f7"/>
+    <text x="671" y="395" text-anchor="middle" font-size="10" fill="#57647f">En curso</text>
+  </g>
+</svg>

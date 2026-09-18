@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-label="Investigación y análisis">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#37517e"/>
+      <stop offset="100%" stop-color="#47b2e4"/>
+    </linearGradient>
+  </defs>
+  <circle cx="150" cy="150" r="130" fill="url(#g1)"/>
+  <circle cx="150" cy="150" r="130" fill="none" stroke="#ffffff" stroke-opacity="0.15" stroke-width="10"/>
+
+  <!-- bar chart -->
+  <rect x="105" y="150" width="16" height="45" rx="3" fill="#ffffff" fill-opacity="0.85"/>
+  <rect x="128" y="130" width="16" height="65" rx="3" fill="#ffffff" fill-opacity="0.85"/>
+  <rect x="151" y="115" width="16" height="80" rx="3" fill="#ffffff" fill-opacity="0.85"/>
+
+  <!-- magnifying glass -->
+  <circle cx="175" cy="120" r="34" fill="none" stroke="#ffffff" stroke-width="9"/>
+  <line x1="199" y1="144" x2="222" y2="167" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+</svg>

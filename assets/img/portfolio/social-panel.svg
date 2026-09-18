@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Social Panel">
+  <rect width="800" height="500" fill="#f5f7fa"/>
+  <rect width="800" height="50" fill="#37517e"/>
+  <circle cx="26" cy="25" r="6" fill="#ff5f57"/>
+  <circle cx="46" cy="25" r="6" fill="#febc2e"/>
+  <circle cx="66" cy="25" r="6" fill="#28c840"/>
+  <text x="400" y="30" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="15" font-weight="600" fill="#ffffff">Social Panel &#8212; Calendario</text>
+
+  <rect x="0" y="50" width="70" height="450" fill="#2c3e58"/>
+  <circle cx="35" cy="90" r="11" fill="#47b2e4"/>
+  <circle cx="35" cy="126" r="11" fill="#57647f"/>
+  <circle cx="35" cy="162" r="11" fill="#57647f"/>
+  <circle cx="35" cy="198" r="11" fill="#57647f"/>
+
+  <rect x="94" y="78" width="628" height="358" rx="10" fill="#ffffff" stroke="#e3e8ee"/>
+  <text x="114" y="106" font-family="'Open Sans', sans-serif" font-size="13" font-weight="600" fill="#37517e">Septiembre 2026</text>
+
+  <!-- Calendar grid: 7 columns x 4 rows -->
+  <g font-family="'Open Sans', sans-serif">
+    <!-- header row -->
+    <text x="132" y="132" font-size="10" fill="#8a94a6">Lun</text>
+    <text x="220" y="132" font-size="10" fill="#8a94a6">Mar</text>
+    <text x="308" y="132" font-size="10" fill="#8a94a6">Mié</text>
+    <text x="396" y="132" font-size="10" fill="#8a94a6">Jue</text>
+    <text x="484" y="132" font-size="10" fill="#8a94a6">Vie</text>
+    <text x="572" y="132" font-size="10" fill="#8a94a6">Sáb</text>
+    <text x="660" y="132" font-size="10" fill="#8a94a6">Dom</text>
+  </g>
+
+  <g>
+    <!-- 4 rows of 7 cells -->
+    <!-- row 1 -->
+    <rect x="114" y="146" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <rect x="202" y="146" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <rect x="290" y="146" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <rect x="378" y="146" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <rect x="466" y="146" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <rect x="554" y="146" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <rect x="642" y="146" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <!-- row 2 -->
+    <rect x="114" y="218" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <rect x="202" y="218" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <rect x="290" y="218" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <rect x="378" y="218" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <rect x="466" y="218" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <rect x="554" y="218" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <rect x="642" y="218" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <!-- row 3 -->
+    <rect x="114" y="290" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <rect x="202" y="290" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <rect x="290" y="290" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <rect x="378" y="290" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <rect x="466" y="290" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <rect x="554" y="290" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+    <rect x="642" y="290" width="76" height="66" rx="6" fill="#fafbfc" stroke="#eef1f5"/>
+
+    <!-- scheduled post dots -->
+    <circle cx="130" cy="162" r="5" fill="#47b2e4"/>
+    <rect x="122" y="172" width="52" height="5" rx="2.5" fill="#c3cbd6"/>
+
+    <circle cx="306" cy="162" r="5" fill="#28c840"/>
+    <rect x="298" y="172" width="52" height="5" rx="2.5" fill="#c3cbd6"/>
+
+    <circle cx="482" cy="234" r="5" fill="#9b59d0"/>
+    <rect x="474" y="244" width="52" height="5" rx="2.5" fill="#c3cbd6"/>
+    <circle cx="482" cy="252" r="5" fill="#47b2e4"/>
+
+    <circle cx="218" cy="306" r="5" fill="#febc2e"/>
+    <rect x="210" y="316" width="52" height="5" rx="2.5" fill="#c3cbd6"/>
+
+    <circle cx="658" cy="306" r="5" fill="#47b2e4"/>
+    <rect x="650" y="316" width="52" height="5" rx="2.5" fill="#c3cbd6"/>
+  </g>
+
+  <!-- connected accounts row -->
+  <rect x="94" y="452" width="628" height="0" fill="none"/>
+</svg>

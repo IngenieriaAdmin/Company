@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Investigación Académica IA">
+  <rect width="800" height="500" fill="#f5f7fa"/>
+  <rect width="800" height="50" fill="#37517e"/>
+  <circle cx="26" cy="25" r="6" fill="#ff5f57"/>
+  <circle cx="46" cy="25" r="6" fill="#febc2e"/>
+  <circle cx="66" cy="25" r="6" fill="#28c840"/>
+  <text x="400" y="30" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="15" font-weight="600" fill="#ffffff">Investigación Académica IA</text>
+
+  <!-- Sources sidebar -->
+  <rect x="0" y="50" width="220" height="450" fill="#ffffff" stroke="#e3e8ee"/>
+  <text x="24" y="82" font-family="'Open Sans', sans-serif" font-size="12" font-weight="600" fill="#37517e">FUENTES VERIFICADAS</text>
+
+  <g font-family="'Open Sans', sans-serif">
+    <circle cx="30" cy="108" r="3" fill="#47b2e4"/>
+    <rect x="42" y="103" width="150" height="7" rx="3.5" fill="#37517e"/>
+    <rect x="42" y="114" width="110" height="5" rx="2.5" fill="#c3cbd6"/>
+
+    <circle cx="30" cy="144" r="3" fill="#47b2e4"/>
+    <rect x="42" y="139" width="160" height="7" rx="3.5" fill="#37517e"/>
+    <rect x="42" y="150" width="90" height="5" rx="2.5" fill="#c3cbd6"/>
+
+    <circle cx="30" cy="180" r="3" fill="#47b2e4"/>
+    <rect x="42" y="175" width="140" height="7" rx="3.5" fill="#37517e"/>
+    <rect x="42" y="186" width="120" height="5" rx="2.5" fill="#c3cbd6"/>
+
+    <circle cx="30" cy="216" r="3" fill="#47b2e4"/>
+    <rect x="42" y="211" width="155" height="7" rx="3.5" fill="#37517e"/>
+    <rect x="42" y="222" width="100" height="5" rx="2.5" fill="#c3cbd6"/>
+  </g>
+
+  <!-- Document editor -->
+  <rect x="244" y="78" width="530" height="392" rx="8" fill="#ffffff" stroke="#e3e8ee"/>
+  <rect x="270" y="104" width="240" height="14" rx="4" fill="#37517e"/>
+
+  <rect x="292" y="146" width="60" height="20" rx="10" fill="#eaf5fc"/>
+  <text x="322" y="160" text-anchor="middle" font-family="'Open Sans', sans-serif" font-size="9" fill="#2f7ba6">Asistente IA</text>
+
+  <g fill="#c3cbd6">
+    <rect x="270" y="188" width="480" height="7" rx="3.5"/>
+    <rect x="270" y="204" width="470" height="7" rx="3.5"/>
+    <rect x="270" y="220" width="440" height="7" rx="3.5"/>
+    <rect x="270" y="236" width="460" height="7" rx="3.5"/>
+    <rect x="270" y="262" width="200" height="9" rx="4" fill="#37517e" fill-opacity="0.85"/>
+    <rect x="270" y="284" width="480" height="7" rx="3.5"/>
+    <rect x="270" y="300" width="450" height="7" rx="3.5"/>
+    <rect x="270" y="316" width="420" height="7" rx="3.5"/>
+  </g>
+
+  <rect x="270" y="350" width="480" height="90" rx="6" fill="#f5f7fa" stroke="#e3e8ee"/>
+  <text x="286" y="372" font-family="'Open Sans', sans-serif" font-size="10" font-weight="600" fill="#37517e">Citas sugeridas (APA)</text>
+  <rect x="286" y="384" width="300" height="6" rx="3" fill="#8a94a6"/>
+  <rect x="286" y="398" width="260" height="6" rx="3" fill="#8a94a6"/>
+  <rect x="286" y="412" width="280" height="6" rx="3" fill="#8a94a6"/>
+</svg>

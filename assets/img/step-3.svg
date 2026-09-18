@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-label="Desarrollo y lanzamiento">
+  <defs>
+    <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#37517e"/>
+      <stop offset="100%" stop-color="#47b2e4"/>
+    </linearGradient>
+  </defs>
+  <circle cx="150" cy="150" r="130" fill="url(#g3)"/>
+  <circle cx="150" cy="150" r="130" fill="none" stroke="#ffffff" stroke-opacity="0.15" stroke-width="10"/>
+
+  <!-- code brackets -->
+  <path d="M118 110 L88 150 L118 190" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M182 110 L212 150 L182 190" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- launch arrow -->
+  <line x1="150" y1="200" x2="150" y2="140" stroke="#ffffff" stroke-width="9" stroke-linecap="round"/>
+  <path d="M133 158 L150 130 L167 158" fill="none" stroke="#ffffff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

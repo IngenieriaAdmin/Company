@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 420" role="img" aria-label="Capas de arquitectura de software">
+  <defs>
+    <linearGradient id="l1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1f2f4d"/>
+      <stop offset="100%" stop-color="#37517e"/>
+    </linearGradient>
+    <linearGradient id="l2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#37517e"/>
+      <stop offset="100%" stop-color="#3d78a8"/>
+    </linearGradient>
+    <linearGradient id="l3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3d78a8"/>
+      <stop offset="100%" stop-color="#47b2e4"/>
+    </linearGradient>
+    <linearGradient id="l4" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#47b2e4"/>
+      <stop offset="100%" stop-color="#8fd0ef"/>
+    </linearGradient>
+  </defs>
+
+  <!-- connecting dots between layers -->
+  <line x1="60" y1="330" x2="60" y2="90" stroke="#c9d8e6" stroke-width="2" stroke-dasharray="4 5"/>
+  <circle cx="60" cy="330" r="4" fill="#37517e"/>
+  <circle cx="60" cy="250" r="4" fill="#37517e"/>
+  <circle cx="60" cy="170" r="4" fill="#37517e"/>
+  <circle cx="60" cy="90" r="4" fill="#37517e"/>
+
+  <!-- layer 4: Presentation / API -->
+  <rect x="90" y="60" width="380" height="60" rx="10" fill="url(#l4)"/>
+  <text x="112" y="97" font-family="'Poppins', sans-serif" font-size="16" font-weight="700" fill="#0f2a40">API &amp; Presentación</text>
+
+  <!-- layer 3: Application -->
+  <rect x="90" y="140" width="380" height="60" rx="10" fill="url(#l3)"/>
+  <text x="112" y="177" font-family="'Poppins', sans-serif" font-size="16" font-weight="700" fill="#ffffff">Application</text>
+
+  <!-- layer 2: Domain -->
+  <rect x="90" y="220" width="380" height="60" rx="10" fill="url(#l2)"/>
+  <text x="112" y="257" font-family="'Poppins', sans-serif" font-size="16" font-weight="700" fill="#ffffff">Domain</text>
+
+  <!-- layer 1: Infrastructure -->
+  <rect x="90" y="300" width="380" height="60" rx="10" fill="url(#l1)"/>
+  <text x="112" y="337" font-family="'Poppins', sans-serif" font-size="16" font-weight="700" fill="#ffffff">Infrastructure</text>
+
+  <text x="90" y="400" font-family="'Open Sans', sans-serif" font-size="13" font-style="italic" fill="#8a94a6">Clean Architecture: cada capa depende solo de la anterior</text>
+</svg>
